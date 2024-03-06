@@ -133,14 +133,50 @@ class krug:
         from math import pi
         return (self.a) ** 2 * pi
 
+
 l = []
-with open('input01.txt',) as f:
+l1 = []
+l2 = []
+l3 = []
+l4 = []
+with open('input01.txt') as f:
         for line in f:
             r = line.strip().split()
             if r[0] == 'Triangle':
                 a = triangle(int(r[1]), int(r[2]), int(r[3]))
-                l.append(a.perimetr())
-        l.sort()
-        l.reverse()
-d = {'triangle': l[0]}
-print(d)
+                if a.perimetr() != None:
+                    l.append(a.perimetr())
+            elif r[0] == 'Rectangle':
+                a1 = kvadrat(int(r[1]), int(r[2]))
+                if a1.perimetr() != None:
+                    l1.append(a1.perimetr())
+            elif r[0] == 'Trapeze':
+                a2 = trapetsia(int(r[1]), int(r[2]), int(r[3]), int(r[4]))
+                if a2.perimetr() != None:
+                    l2.append(a2.perimetr())
+            elif r[0] == 'Parallelogram':
+                a3 = paralelogram(int(r[1]), int(r[2]), int(r[3]))
+                if a3.perimetr() != None:
+                    l3.append(a3.perimetr())
+            elif r[0] == 'Circle':
+                a4 = krug(int(r[1]))
+                if a4.dovzhina() != None:
+                    l4.append(a4.dovzhina())
+
+l.sort()
+l.reverse()
+d = {'Triangle': l[0]}
+l1.sort()
+l1.reverse()
+d1 = {'Rectangle': l1[0]}
+l2.sort()
+l2.reverse()
+d2 = {'Trapeze': l2[0]}
+l3.sort()
+l3.reverse()
+d3 = {'Parallelogram': l3[0]}
+l4.sort()
+l4.reverse()
+d4 = {'Circle': l4[0]} 
+
+print(d, d1, d2, d3, d4)
