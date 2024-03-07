@@ -139,7 +139,10 @@ l1 = []
 l2 = []
 l3 = []
 l4 = []
-with open('input01.txt') as f:
+
+
+x = input()
+with open(x) as f:
         for line in f:
             r = line.strip().split()
             if r[0] == 'Triangle':
@@ -162,21 +165,59 @@ with open('input01.txt') as f:
                 a4 = krug(int(r[1]))
                 if a4.dovzhina() != None:
                     l4.append(a4.dovzhina())
+def maxpersqr():
+    l.sort()
+    l.reverse()
+    d = {'Triangle': l[0]}
+    l1.sort()
+    l1.reverse()
+    d.update({'Rectangle': l1[0]})
+    l2.sort()
+    l2.reverse()
+    d.update({'Trapeze': l2[0]})
+    l3.sort()
+    l3.reverse()
+    d.update({'Parallelogram': l3[0]})
+    l4.sort()
+    l4.reverse()
+    d.update({'Circle': l4[0]})
+    l.clear()
+    l1.clear()
+    l2.clear()
+    l3.clear()
+    l4.clear()
+    def get_key(value):
+        for key,val in d.items():
+            if val == value:
+                return key
+    a = max(d.values())
+    b = get_key(a)
+    d = {b : a}
+    return d
+print("max per", maxpersqr())
 
-l.sort()
-l.reverse()
-d = {'Triangle': l[0]}
-l1.sort()
-l1.reverse()
-d1 = {'Rectangle': l1[0]}
-l2.sort()
-l2.reverse()
-d2 = {'Trapeze': l2[0]}
-l3.sort()
-l3.reverse()
-d3 = {'Parallelogram': l3[0]}
-l4.sort()
-l4.reverse()
-d4 = {'Circle': l4[0]} 
+with open(x) as f:
+        for line in f:
+            r = line.strip().split()
+            if r[0] == 'Triangle':
+                a = triangle(int(r[1]), int(r[2]), int(r[3]))
+                if a.square() != None:
+                    l.append(a.square())
+            elif r[0] == 'Rectangle':
+                a1 = kvadrat(int(r[1]), int(r[2]))
+                if a1.square() != None:
+                    l1.append(a1.square())
+            elif r[0] == 'Trapeze':
+                a2 = trapetsia(int(r[1]), int(r[2]), int(r[3]), int(r[4]))
+                if a2.square() != None:
+                    l2.append(a2.square())
+            elif r[0] == 'Parallelogram':
+                a3 = paralelogram(int(r[1]), int(r[2]), int(r[3]))
+                if a3.square() != None:
+                    l3.append(a3.square())
+            elif r[0] == 'Circle':
+                a4 = krug(int(r[1]))
+                if a4.square() != None:
+                    l4.append(a4.square())
+print('max square', maxpersqr())
 
-print(d, d1, d2, d3, d4)
